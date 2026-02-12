@@ -8,7 +8,7 @@ on:                          # 触发条件
 
 jobs:
   say-hello:                 # Job 的 ID
-    runs-on: ubuntu-latest   # 运行环境
+    runs-on: self-hosted
 
     steps:
       - name: 签出代码        # 步骤 1：签出仓库代码
@@ -17,5 +17,11 @@ jobs:
       - name: 打个招呼        # 步骤 2：运行命令
         run: echo "Hello, GitHub Actions! 🎉"
 
-      - name: 显示日期
-        run: date
+      - name: 安装 cmake
+        run: sudo apt-get update && sudo apt-get install -y cmake
+
+      - name: 进行编译
+        run: mkdir -p build && cd build && cmake .. && make
+
+      - name: 运行程序
+        run: ./build/actions_test
