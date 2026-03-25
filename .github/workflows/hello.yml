@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: 签出代码
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: 显示运行环境
         shell: bash
@@ -65,7 +65,7 @@ jobs:
           fi
 
       - name: 上传产物
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: actions_test-${{ matrix.name }}
           path: ${{ matrix.binary }}
