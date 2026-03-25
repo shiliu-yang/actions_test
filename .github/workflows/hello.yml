@@ -8,7 +8,7 @@ on:                          # 触发条件
 
 jobs:
   say-hello:                 # Job 的 ID
-    runs-on: self-hosted
+    runs-on: macos-latest
 
     steps:
       - name: 签出代码        # 步骤 1：签出仓库代码
@@ -18,7 +18,7 @@ jobs:
         run: echo "Hello, GitHub Actions! 🎉"
 
       - name: 安装 cmake
-        run: sudo apt-get update && sudo apt-get install -y cmake
+        run: brew install cmake
 
       - name: 进行编译
         run: mkdir -p build && cd build && cmake .. && make
