@@ -14,6 +14,18 @@ jobs:
       - name: 签出代码        # 步骤 1：签出仓库代码
         uses: actions/checkout@v4
 
+      - name: 显示运行系统与芯片信息
+        run: |
+          echo "=== 操作系统 ==="
+          sw_vers
+          echo ""
+          echo "=== 内核与硬件架构 ==="
+          uname -a
+          echo "架构标识: $(uname -m)"
+          echo ""
+          echo "=== CPU 型号 ==="
+          sysctl -n machdep.cpu.brand_string 2>/dev/null || echo "(无法读取)"
+
       - name: 打个招呼        # 步骤 2：运行命令
         run: echo "Hello, GitHub Actions! 🎉"
 
